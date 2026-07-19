@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Import from Excel — Deviation Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="analysis.html" class="logo"><span class="dot"></span>Deviation Tracker</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="analysis.html">Deviation Tracker</a></li>
+        <li><a href="custom.html">Custom Calculator</a></li>
+        <li><a href="upload.html" class="active">Import Excel</a></li>
+      </ul>
+    </nav>
+    <div class="user-badge">
+      <span id="user-email-slot" class="skeleton"></span>
+      <a href="#" id="logout-btn">Log out</a>
+    </div>
+    <button class="nav-toggle" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <div class="page-header wrap">
+    <span class="eyebrow">// import from excel</span>
+    <h1>Upload your <span class="gradient-text">Excel file</span>, we'll do the rest.</h1>
+    <p class="lead">Upload an .xlsx, .xls, or .csv file and the deviations inside it will be read automatically and loaded into the Deviation Tracker — no manual typing needed.</p>
+  </div>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+
+      <div class="tool-panel">
+        <h3 style="margin-bottom:14px;">Expected columns</h3>
+        <p style="font-size:0.92rem; margin-bottom:18px;">
+          Your Excel sheet should have a header row with these column names (any order, not case-sensitive):
+        </p>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Status</th>
+                <th>Quarter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DEV-2024-011</td>
+                <td>2024</td>
+                <td>Closed</td>
+                <td>Q3</td>
+              </tr>
+              <tr>
+                <td>DEV-2024-012</td>
+                <td>2024</td>
+                <td>Open</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tool-note">
+          <strong>Notes:</strong> "Status" should say <strong>Open</strong> or <strong>Closed</strong>.
+          "Quarter" only matters for closed items — use Q1, Q2, Q3, or Q4. Leave it empty for open items.
+        </p>
+      </div>
+
+      <div class="tool-panel">
+        <h3 style="margin-bottom:18px;">Upload file</h3>
+
+        <div class="upload-drop" id="upload-drop">
+          <input type="file" id="file-input" accept=".xlsx,.xls,.csv" hidden>
+          <div class="upload-icon">⬆</div>
+          <p class="upload-text"><strong>Click to choose a file</strong> or drag it here</p>
+          <p class="upload-hint">.xlsx, .xls or .csv</p>
+        </div>
+
+        <p id="upload-status" class="form-status"></p>
+
+        <div id="preview-wrap" style="display:none; margin-top:26px;">
+          <h3 style="margin-bottom:14px;">Preview <span id="preview-count" style="color:var(--color-data); font-family:var(--font-mono); font-size:0.9rem;"></span></h3>
+          <div class="table-scroll">
+            <table class="data-table" id="preview-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Year</th>
+                  <th>Status</th>
+                  <th>Quarter</th>
+                </tr>
+              </thead>
+              <tbody id="preview-body"></tbody>
+            </table>
+          </div>
+
+          <div class="tool-actions">
+            <button class="btn btn-primary" id="confirm-import-btn">Import into Deviation Tracker →</button>
+            <button class="btn btn-ghost" id="cancel-import-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Deviation Tracker.</p>
+    <p>Built with care.</p>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="js/firebase-config.js?v=3"></script>
+<script src="js/auth.js?v=3"></script>
+<script>requireAuth();</script>
+<script src="js/main.js?v=3"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="js/upload.js?v=3"></script>
+</body>
+</html>

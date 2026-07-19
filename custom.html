@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Calculator — Deviation Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="analysis.html" class="logo"><span class="dot"></span>Deviation Tracker</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="analysis.html">Deviation Tracker</a></li>
+        <li><a href="custom.html" class="active">Custom Calculator</a></li>
+        <li><a href="upload.html">Import Excel</a></li>
+      </ul>
+    </nav>
+    <div class="user-badge">
+      <span id="user-email-slot" class="skeleton"></span>
+      <a href="#" id="logout-btn">Log out</a>
+    </div>
+    <button class="nav-toggle" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <div class="page-header wrap">
+    <span class="eyebrow">// custom calculator</span>
+    <h1>Build <span class="gradient-text">your own</span> percentage calculation.</h1>
+    <p class="lead">Rename the table title and column names to match any task, enter your numbers, and get a ratio and share-of-total percentage automatically — fully editable, nothing fixed.</p>
+  </div>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="tool-panel">
+
+        <div class="form-field" style="max-width:420px; margin-bottom:26px;">
+          <label for="task-title">Task name</label>
+          <input type="text" id="task-title" value="My Custom Task">
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="custom-table">
+            <thead>
+              <tr>
+                <th style="width:26%">
+                  <input type="text" class="col-header-input" id="label-header" value="Item name">
+                </th>
+                <th style="width:20%">
+                  <input type="text" class="col-header-input" id="v1-header" value="Value 1">
+                </th>
+                <th style="width:20%">
+                  <input type="text" class="col-header-input" id="v2-header" value="Value 2">
+                </th>
+                <th style="width:18%" id="ratio-header-label">Value 1 ÷ Value 2</th>
+                <th style="width:16%">Share of total</th>
+                <th style="width:4%"></th>
+              </tr>
+            </thead>
+            <tbody id="custom-table-body">
+              <!-- rows added by JavaScript -->
+            </tbody>
+            <tfoot>
+              <tr class="summary-row">
+                <td>Total</td>
+                <td id="custom-total-v1">0</td>
+                <td id="custom-total-v2">0</td>
+                <td>—</td>
+                <td>100%</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="tool-actions">
+          <button class="btn btn-data" id="custom-add-row-btn">+ Add Row</button>
+          <button class="btn btn-ghost" id="custom-clear-btn">Clear All</button>
+        </div>
+
+        <p class="tool-note">
+          <strong>Tip:</strong> click on the column titles above ("Value 1", "Value 2") to rename them for whatever
+          you're calculating. The ratio column always divides the first number by the second and shows it as a percentage,
+          and "Share of total" shows what percentage each row represents out of the sum of the first number column.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Deviation Tracker.</p>
+    <p>Built with care.</p>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="js/firebase-config.js?v=3"></script>
+<script src="js/auth.js?v=3"></script>
+<script>requireAuth();</script>
+<script src="js/main.js?v=3"></script>
+<script src="js/custom.js?v=3"></script>
+</body>
+</html>
